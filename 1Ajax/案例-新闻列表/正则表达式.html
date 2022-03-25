@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="name">{{name}}今年{{age}}</div>
+    <div id="age"></div>
+    <script>
+        let str = '<div>{{name}}今年 {{ age}}</div>';
+        let pattern = /{{\s*([a-zA-Z]+)\s*}}/;
+        let patternResult = pattern.exec(str);
+        console.log(patternResult);
+        let htmlStr = document.getElementById('name').innerHTML;
+        console.log(htmlStr);
+        document.getElementById('age').innerHTML = '大家好';
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- //1.引入template -->
+    <script src="./lib/template-web.js"></script>
+    <script src="./lib/jquery.js"></script>
+</head>
+
+<body>
+    <div id="person"></div>
+    <script type="text/html" id="tpl_person">
+
+        <h1> {{name}}....{{age}}</h1>
+
+        <div>{{regTime |dateFormat }}</div>
+    </script>
+    <script>
+        //2.数据模板
+        let data = {
+            name: '张三',
+            age: 29,
+            regTime: new Date()
+        }
+    </script>
+    <script>
+        template.defaults.imports.dateFormat = function(date) {
+            //template.defaults.imports.dateFormat = function(date) {
+            let y = date.getFullYear();
+            let m = date.getMonth() + 1;
+            let d = date.getDate();
+            // let y = date.getFullYear();
+            // let m = date.getMonth() + 1;
+            // let d = date.getDate();
+            return y + '-' + m + '-' + d;
+        }
+
+
+        let htmlStr = template("tpl_person", data);
+
+        // 5.渲染到html
+        $("#person").html(htmlStr);
+    </script>
+</body>
+
+</html>

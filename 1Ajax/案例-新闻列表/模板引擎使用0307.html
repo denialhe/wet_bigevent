@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 1. 引入模板引擎文件 -->
+    <script src="./lib/template-web.js"></script>
+    <script src="./lib/jquery.js"></script>
+</head>
+
+<body>
+    <div id="container"></div>
+    <!-- 2. 定义数据 -->
+    <script id="container">
+        let data = {
+            name: "David",
+            age: 25,
+            regTime: new Date()
+        }
+    </script>
+    <!-- 3. 定义模板 -->
+    <script type="text/html" id="tpl_user">
+        <h3>{{name}}---{{age}}</h3>
+        <h2></h2>
+        <h2>注册时间：{{regTime |dateFormat}}</h2>
+    </script>
+    <!-- 4. 调用template函数 -->
+    <script>
+        template.defaults.imports.dateFormat = function(date) {
+            let y = date.getFullYear();
+            let m = date.getMonth() + 1;
+            let d = date.getDate();
+            let h = date.getHours();
+
+            return y + '-' + '-' + m + '-' + d + '-' + h
+        }
+
+
+        let htmlStr = template("tpl_user", data);
+
+        // 5.渲染到html
+        $("#container").html(htmlStr);
+    </script>
+</body>
+
+</html>

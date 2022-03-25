@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //XMLHttpRequest 是浏览器提供的javascript对象
+        //1 创建XHR对象
+        let xhr = new XMLHttpRequest();
+        //指定 请求方式与 URL地址 ?拼接查询字符串：参数=值 &接多个参数
+        xhr.open('GET', 'http://www.liulongbin.top:3006/api/getbooks?')
+
+        //发起请求
+        xhr.send();
+        //监听
+        xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    console.log(xhr.response);
+                }
+            }
+            //     // $.ajax({
+            //     method:'GET'
+            // })
+
+        //xhr POST 请求
+        // let xhr_book = new XMLHttpRequest();
+        // xhr_book.open('POST', 'http://www.liulongbin.top:3006/api/addbook');
+        // //设置 Content-Type
+        // xhr_book.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
+        //     //4 send
+        // xhr_book.send('bookname=水水&author=施耐庵&publisher=天津图书出版社');
+        // //xhr_book.send('bookname=水浒传&author=&publisher=');
+        // xhr_book.onreadystatechange = function() {
+        //     if (xhr_book.readyState === 4 && xhr_book.status === 200) {
+        //         console.log(xhr_book.responseText);
+        //     }
+        // }
+    </script>
+</body>
+
+</html>

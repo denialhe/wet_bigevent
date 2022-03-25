@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 1.导入模板 -->
+    <script src="./lib/template-web.js"></script>
+    <script src="./lib/jquery.js"></script>
+</head>
+
+<body>
+    <div id="name_id"></div>
+    <!-- 3.模板结构 -->
+    <script type="text/html" id="tpl-user">
+        <h1>{{name}} {{age}} </h1>
+        <div>注册时间：{{regTime | dateFormat}}</div>
+        <span>{{regTime | dateFormat}}</span>
+    </script>
+    <script>
+        // 2.模板数据
+        let data = {
+            name: 'zhang',
+            age: 28,
+            regTime: new Date()
+        }
+        
+        template.defaults.imports.dateFormat = function(date) {
+                let y = date.getFullYear();
+                let m = date.getMonth() + 1;
+                let d = date.getDate();
+                let h = date.getHours();
+
+                return y + '-' + '-' + m + '-' + d + '-' + h
+            }
+            //4.模板数据
+        let htmlstr = template('tpl-user', data);
+        //5.模板渲染
+        $('#name_id').html(htmlstr);
+        //表达式输出
+        //原文输出{{@data}}
+        //条件输出：{{ if value}}
+        //循环输出：{{ each arr}}
+        //循环体 $index $itme
+        //   {{/each}}
+        //标准语法过滤器本质是一个数据处理函数
+        // {{vale|filterName}}  |管道操作符
+
+
+        // template.defalts.imports.dateFormat = function(date) {
+
+        //     let y = date.getFullYear()
+        //     console.log(y);
+        //     return y;
+        // }
+    </script>
+</body>
+
+</html>
